@@ -32,4 +32,13 @@ uv run main.py data/measurements_*.txt \
  10000000    1.221    0.000    1.221    0.000 {method 'decode' of 'bytes' objects}
         1    0.000    0.000    0.000    0.000 {built-in method builtins.sorted}
 
-    Чтение и деление стало быстрее
+Чтение и разделение стало быстрее
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    4.991    4.991    7.496    7.496 main.py:4(read_measurements)
+ 10000000    1.351    0.000    1.351    0.000 {method 'split' of 'bytes' objects}
+  9999589    1.154    0.000    1.154    0.000 stats.py:33(update)
+        3    0.000    0.000    0.000    0.000 {built-in method nt.stat}
+        2    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
+
+Теперь декодируется только итоговый список станций, а вся логика работает с сырыми байтами

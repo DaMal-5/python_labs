@@ -6,7 +6,7 @@ def read_measurements(filename: str) -> dict:
     with open(filename, "rb") as f:
         for line in f:
             parts = line.split(b";")
-            station = parts[0].decode("utf-8")
+            station = parts[0]  # Без decode
             temperature = float(parts[1])
             
             if station not in city_stats:
@@ -16,10 +16,13 @@ def read_measurements(filename: str) -> dict:
     return city_stats
 
 def print_sorted(city_stats: dict) -> None:
-    for station in sorted(city_stats.keys()):
-        print(f"{station};{city_stats[station]}")
+    for station_bytes in sorted(city_stats.keys()):
+        station_str = station_bytes.decode("utf-8")
+        print(f"{station_str};{city_stats[station_bytes]}")
 
 def main():
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
     if len(sys.argv) != 2:
         print("ошибка: укажите путь к файлу.", file=sys.stderr)
         sys.exit(1)
