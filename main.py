@@ -3,11 +3,12 @@ from stats import StationStats
 
 def read_measurements(filename: str) -> dict:
     city_stats = {}
-    with open(filename, "r", encoding="utf-8") as f:
+    with open(filename, "rb") as f:
         for line in f:
-            text = line.split(";")
-            station = text[0]
-            temperature = float(text[1])
+            parts = line.split(b";")
+            station = parts[0].decode("utf-8")
+            temperature = float(parts[1])
+            
             if station not in city_stats:
                 city_stats[station] = StationStats(temperature)
             else:
