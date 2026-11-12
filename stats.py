@@ -2,6 +2,8 @@ import math
 
 class StationStats:
 
+    __slots__ = ("_min", "_max", "_sum", "_count")
+
     def __init__(self, value: float) -> None:
         self._min = value
         self._max = value

@@ -42,3 +42,14 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
         2    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
 
 Теперь декодируется только итоговый список станций, а вся логика работает с сырыми байтами
+
+Добавлено __slots__
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    4.975    4.975    7.488    7.488 main.py:4(read_measurements)
+ 10000000    1.340    0.000    1.340    0.000 {method 'split' of 'bytes' objects}
+  9999589    1.174    0.000    1.174    0.000 stats.py:35(update)
+        2    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
+      411    0.000    0.000    0.000    0.000 stats.py:7(__init__)
+
+Время почти не изменилось, так как конкретно в нашей задаче slots влияет незначительно 
